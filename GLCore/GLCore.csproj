@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{805B8702-0FAC-4104-8F41-5337130CA0C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GLCore</RootNamespace>
+    <AssemblyName>GLCore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\GLCore.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpGL, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.SceneGraph, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\SharpGL.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WinForms, Version=2.3.0.1, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\SharpGL.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Factory.cs" />
+    <Compile Include="GLExtension.cs" />
+    <Compile Include="Implementation\Database\Database.cs" />
+    <Compile Include="Implementation\Drag\DragManager.cs" />
+    <Compile Include="Implementation\Drag\DragPoint.cs" />
+    <Compile Include="Implementation\Mouse\MouseInsert.cs" />
+    <Compile Include="Implementation\Mouse\MousePen.cs" />
+    <Compile Include="Implementation\Mouse\MouseEraser.cs" />
+    <Compile Include="Implementation\Mouse\MouseAddArea.cs" />
+    <Compile Include="Implementation\Mouse\MouseAddLine.cs" />
+    <Compile Include="Implementation\Mouse\MouseAddTowerPair.cs" />
+    <Compile Include="Implementation\Mouse\MouseDrag.cs" />
+    <Compile Include="Implementation\Muti\DynamicObstaclePoints.cs" />
+    <Compile Include="Implementation\Muti\LaserStrength.cs" />
+    <Compile Include="Implementation\Muti\LaserPoints.cs" />
+    <Compile Include="Implementation\Muti\Muti.cs" />
+    <Compile Include="Implementation\Muti\ObstacleLines.cs" />
+    <Compile Include="Implementation\Muti\ObstaclePoints.cs" />
+    <Compile Include="Implementation\Muti\Path.cs" />
+    <Compile Include="Implementation\Others\Color.cs" />
+    <Compile Include="Implementation\Others\GLSetting.cs" />
+    <Compile Include="Implementation\Safety\SafetyDictionary.cs" />
+    <Compile Include="Implementation\Safety\SafetyList.cs" />
+    <Compile Include="Implementation\Single\AdvancedArea.cs" />
+    <Compile Include="Implementation\Single\AdvancedLine.cs" />
+    <Compile Include="Implementation\Single\AGV.cs" />
+    <Compile Include="Implementation\Single\Eraser.cs" />
+    <Compile Include="Implementation\Single\ForbiddenArea.cs" />
+    <Compile Include="Implementation\Single\ForbiddenLine.cs" />
+    <Compile Include="Implementation\Single\Goal.cs" />
+    <Compile Include="Implementation\Single\NarrowLine.cs" />
+    <Compile Include="Implementation\Single\Parking.cs" />
+    <Compile Include="Implementation\Single\Pen.cs" />
+    <Compile Include="Implementation\Single\Power.cs" />
+    <Compile Include="Implementation\Single\Single.cs" />
+    <Compile Include="Interface\Drag\IDragable.cs" />
+    <Compile Include="Interface\Drag\IDragManager.cs" />
+    <Compile Include="Interface\Drag\IDragPoint.cs" />
+    <Compile Include="Implementation\Mouse\Mouse.cs" />
+    <Compile Include="Interface\Mouse\IMouse.cs" />
+    <Compile Include="Interface\Mouse\IMouseInsert.cs" />
+    <Compile Include="Interface\Mouse\IMouseInsertPanel.cs" />
+    <Compile Include="Interface\Mouse\IMousePen.cs" />
+    <Compile Include="Interface\Mouse\IMouseEraser.cs" />
+    <Compile Include="Interface\Mouse\IMouseAddArea.cs" />
+    <Compile Include="Interface\Mouse\IMouseAddLine.cs" />
+    <Compile Include="Interface\Mouse\IMouseAddTowerPair.cs" />
+    <Compile Include="Interface\Mouse\IMouseDrag.cs" />
+    <Compile Include="Interface\Muti\IDynamicObstaclePoints.cs" />
+    <Compile Include="Interface\Muti\ILaserStrength.cs" />
+    <Compile Include="Interface\Muti\ILaserPoints.cs" />
+    <Compile Include="Interface\Muti\IMuti.cs" />
+    <Compile Include="Interface\Muti\IObstacleLines.cs" />
+    <Compile Include="Interface\Muti\IObstaclePoints.cs" />
+    <Compile Include="Interface\Muti\IPath.cs" />
+    <Compile Include="Interface\Others\IColor.cs" />
+    <Compile Include="Interface\Others\IDraw.cs" />
+    <Compile Include="Interface\Others\IGLSetting.cs" />
+    <Compile Include="Interface\Others\IHasGLSetting.cs" />
+    <Compile Include="Interface\Others\IName.cs" />
+    <Compile Include="Interface\Safety\ISafety.cs" />
+    <Compile Include="Interface\Safety\ISafetyDictionary.cs" />
+    <Compile Include="Interface\Safety\ISafetyList.cs" />
+    <Compile Include="Interface\Single\IAdvancedArea.cs" />
+    <Compile Include="Interface\Single\IAdvancedLine.cs" />
+    <Compile Include="Interface\Single\IAGV.cs" />
+    <Compile Include="Interface\Single\IEraser.cs" />
+    <Compile Include="Interface\Single\IForbiddenArea.cs" />
+    <Compile Include="Interface\Single\IForbiddenLine.cs" />
+    <Compile Include="Interface\Single\IGoal.cs" />
+    <Compile Include="Interface\Single\INarrowLine.cs" />
+    <Compile Include="Interface\Single\IParking.cs" />
+    <Compile Include="Interface\Single\IPen.cs" />
+    <Compile Include="Interface\Single\IPower.cs" />
+    <Compile Include="Interface\Single\ISingle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SingleTowardPairEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SingleTowardPairEditor.Designer.cs">
+      <DependentUpon>SingleTowardPairEditor.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bmp\AGV.bmp" />
+    <Content Include="Bmp\Goal.bmp" />
+    <Content Include="Bmp\NarrowLine.bmp" />
+    <Content Include="Bmp\Parking.bmp" />
+    <Content Include="Bmp\Power.bmp" />
+    <Content Include="DLL\SharpGL.dll" />
+    <Content Include="DLL\SharpGL.SceneGraph.dll" />
+    <Content Include="DLL\SharpGL.WinForms.dll" />
+    <Content Include="ICON\Done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AGVDefine\AGVDefine.csproj">
+      <Project>{51E35835-6673-443B-8926-9AD3117DBCE2}</Project>
+      <Name>AGVDefine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FactoryMode\FactoryMode.csproj">
+      <Project>{b66dd409-3bf6-488d-b887-d00a59c6396d}</Project>
+      <Name>FactoryMode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Geometry\Geometry.csproj">
+      <Project>{07e11b21-0d87-4446-8ee8-91135dcae089}</Project>
+      <Name>Geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetFunction\NetFunction.csproj">
+      <Project>{853b5ea0-8387-49aa-b37b-9fa1dd24a72a}</Project>
+      <Name>NetFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialCommunicationData\SerialCommunicationData.csproj">
+      <Project>{7eafe444-e185-4d5e-acfe-65c7e1016425}</Project>
+      <Name>SerialCommunicationData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SingleTowardPairEditor.resx">
+      <DependentUpon>SingleTowardPairEditor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
