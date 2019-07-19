@@ -87,7 +87,7 @@ namespace GLCore
         /// <summary>
         /// 路徑是否與 (textX,textY) 相交
         /// </summary>
-        public static bool IntersectPath(this IPath path, int testX, int testY, double saftyArea)
+        public static bool IntersectPath(this IPath path, int testX, int testY, double safetyArea)
         {
             IPair test = FactoryMode.Factory.Pair(testX, testY);
             bool intersect = false;
@@ -95,7 +95,7 @@ namespace GLCore
             {
                 if (!intersect)
                 {
-                    intersect = item.LengthTo(test) < saftyArea;
+                    intersect = item.LengthTo(test) < safetyArea;
                 }
             });
             return intersect;

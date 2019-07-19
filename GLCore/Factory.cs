@@ -530,9 +530,8 @@ namespace GLCore
         #endregion AdvancedLine
 
         #region NarrowLine
-
         /// <summary>
-        /// 建立窄道線物件
+        /// 建立窄道軌跡線物件
         /// </summary>
         public static INarrowLine NarrowLine(this IFactory factory, string name)
         {
@@ -540,7 +539,7 @@ namespace GLCore
         }
 
         /// <summary>
-        /// 建立窄道線物件
+        /// 建立窄道軌跡線物件
         /// </summary>
         public static INarrowLine NarrowLine(this IFactory factory, int x0, int y0, int x1, int y1, string name)
         {
@@ -548,7 +547,7 @@ namespace GLCore
         }
 
         /// <summary>
-        /// 建立窄道線物件
+        /// 建立窄道軌跡線物件
         /// </summary>
         public static INarrowLine NarrowLine(this IFactory factory, ILine line, string name)
         {
@@ -556,14 +555,81 @@ namespace GLCore
         }
 
         /// <summary>
-        /// 建立窄道線物件
+        /// 建立窄道軌跡線物件
         /// </summary>
         public static INarrowLine NarrowLine(this IFactory factory, IPair beg, IPair end, string name)
         {
             return new NarrowLine(beg, end, name);
         }
-
         #endregion NarrowLine
+
+        #region NarrowPassageWay
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static INarrowPassageWay NarrowPassageWay(this IFactory factory, string name)
+        {
+            return new NarrowPassageWay(name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static INarrowPassageWay NarrowPassageWay(this IFactory factory, int x0, int y0, int x1, int y1, string name)
+        {
+            return new NarrowPassageWay(x0, y0, x1, y1, name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static INarrowPassageWay NarrowPassageWay(this IFactory factory, ILine line, string name)
+        {
+            return new NarrowPassageWay(line, name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static INarrowPassageWay NarrowPassageWay(this IFactory factory, IPair beg, IPair end, string name)
+        {
+            return new NarrowPassageWay(beg, end, name);
+        }
+        #endregion NarrowPassageWay
+
+        #region MagneticTracking
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static IMagneticTracking MagneticTracking(this IFactory factory, string name)
+        {
+            return new MagneticTracking(name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static IMagneticTracking MagneticTracking(this IFactory factory, int x0, int y0, int x1, int y1, string name)
+        {
+            return new MagneticTracking(x0, y0, x1, y1, name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static IMagneticTracking MagneticTracking(this IFactory factory, ILine line, string name)
+        {
+            return new MagneticTracking(line, name);
+        }
+
+        /// <summary>
+        /// 建立窄道軌跡線物件
+        /// </summary>
+        public static IMagneticTracking MagneticTracking(this IFactory factory, IPair beg, IPair end, string name)
+        {
+            return new MagneticTracking(beg, end, name);
+        }
+        #endregion MagneticTracking
 
         #region AGV
 
@@ -602,7 +668,6 @@ namespace GLCore
         #endregion AGV
 
         #region Power
-
         /// <summary>
         /// 建立充電站物件
         /// </summary>
@@ -634,11 +699,213 @@ namespace GLCore
         {
             return new Power(towardPair, name);
         }
-
         #endregion Power
 
-        #region Goal
+        #region ChargingDocking
+        /// <summary>
+        /// 建立充電站物件
+        /// </summary>
+        public static IChargingDocking ChargingDocking(this IFactory factory, string name)
+        {
+            return new ChargingDocking(name);
+        }
 
+        /// <summary>
+        /// 建立充電站物件
+        /// </summary>
+        public static IChargingDocking ChargingDocking(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new ChargingDocking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立充電站物件
+        /// </summary>
+        public static IChargingDocking ChargingDocking(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new ChargingDocking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立充電站物件
+        /// </summary>
+        public static IChargingDocking ChargingDocking(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new ChargingDocking(towardPair, name);
+        }
+        #endregion ChargingDocking
+
+        #region ConveyorDocking
+        /// <summary>
+        /// 建立皮帶式或滾輪式產品產線流道對接物件
+        /// </summary>
+        public static IConveyorDocking ConveyorDocking(this IFactory factory, string name)
+        {
+            return new ConveyorDocking(name);
+        }
+
+        /// <summary>
+        /// 建立皮帶式或滾輪式產品產線流道對接物件
+        /// </summary>
+        public static IConveyorDocking ConveyorDocking(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new ConveyorDocking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立皮帶式或滾輪式產品產線流道對接物件
+        /// </summary>
+        public static IConveyorDocking ConveyorDocking(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new ConveyorDocking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立皮帶式或滾輪式產品產線流道對接物件
+        /// </summary>
+        public static IConveyorDocking ConveyorDocking(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new ConveyorDocking(towardPair, name);
+        }
+        #endregion ConveyorDocking
+
+        #region GoalMagneticTracking
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalMagneticTracking GoalMagneticTracking(this IFactory factory, string name)
+        {
+            return new GoalMagneticTracking(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalMagneticTracking GoalMagneticTracking(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalMagneticTracking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalMagneticTracking GoalMagneticTracking(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalMagneticTracking(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalMagneticTracking GoalMagneticTracking(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalMagneticTracking(towardPair, name);
+        }
+        #endregion GoalMagneticTracking
+
+        #region MagneticTrackingFront
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingFront MagneticTrackingFront(this IFactory factory, string name)
+        {
+            return new MagneticTrackingFront(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingFront MagneticTrackingFront(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new MagneticTrackingFront(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingFront MagneticTrackingFront(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new MagneticTrackingFront(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingFront MagneticTrackingFront(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new MagneticTrackingFront(towardPair, name);
+        }
+        #endregion MagneticTrackingFront
+
+        #region MagneticTrackingRear
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingRear MagneticTrackingRear(this IFactory factory, string name)
+        {
+            return new MagneticTrackingRear(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingRear MagneticTrackingRear(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new MagneticTrackingRear(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingRear MagneticTrackingRear(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new MagneticTrackingRear(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IMagneticTrackingRear MagneticTrackingRear(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new MagneticTrackingRear(towardPair, name);
+        }
+        #endregion MagneticTrackingRear
+
+        #region General
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGeneral General(this IFactory factory, string name)
+        {
+            return new General(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGeneral General(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new General(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGeneral General(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new General(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGeneral General(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new General(towardPair, name);
+        }
+        #endregion General
+
+        #region Goal
         /// <summary>
         /// 建立目標點物件
         /// </summary>
@@ -670,11 +937,247 @@ namespace GLCore
         {
             return new Goal(towardPair, name);
         }
-
         #endregion Goal
 
-        #region Parking
+        #region GoalGeneral
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalGeneral GoalGeneral(this IFactory factory, string name)
+        {
+            return new GoalGeneral(name);
+        }
+    
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalGeneral GoalGeneral(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalGeneral(x, y, toward, name);
+        }
 
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalGeneral GoalGeneral(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalGeneral(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalGeneral GoalGeneral(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalGeneral(towardPair, name);
+        }
+        #endregion GoalGeneral
+
+        #region GoalStandBy
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalStandBy GoalStandBy(this IFactory factory, string name)
+        {
+            return new GoalStandBy(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalStandBy GoalStandBy(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalStandBy(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalStandBy GoalStandBy(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalStandBy(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalStandBy GoalStandBy(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalStandBy(towardPair, name);
+        }
+        #endregion GoalStandBy
+
+        #region GoalDoor
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalDoor GoalDoor(this IFactory factory, string name)
+        {
+            return new GoalDoor(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalDoor GoalDoor(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalDoor(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalDoor GoalDoor(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalDoor(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalDoor GoalDoor(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalDoor(towardPair, name);
+        }
+        #endregion GoalDoor
+
+        #region GoalRiseUp
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseUp GoalRiseUp(this IFactory factory, string name)
+        {
+            return new GoalRiseUp(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseUp GoalRiseUp(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalRiseUp(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseUp GoalRiseUp(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalRiseUp(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseUp GoalRiseUp(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalRiseUp(towardPair, name);
+        }
+        #endregion GoalRiseUp
+
+        #region GoalRiseDown
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseDown GoalRiseDown(this IFactory factory, string name)
+        {
+            return new GoalRiseDown(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseDown GoalRiseDown(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalRiseDown(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseDown GoalRiseDown(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalRiseDown(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalRiseDown GoalRiseDown(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalRiseDown(towardPair, name);
+        }
+        #endregion GoalRiseDown
+
+        #region GoalNormal
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalNormal GoalNormal(this IFactory factory, string name)
+        {
+            return new GoalNormal(name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalNormal GoalNormal(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalNormal(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalNormal GoalNormal(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalNormal(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立目標點物件
+        /// </summary>
+        public static IGoalNormal GoalNormal(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalNormal(towardPair, name);
+        }
+        #endregion GoalNormal
+
+        #region GoalBuffer
+        /// <summary>
+        /// 建立暫時停車區物件
+        /// </summary>
+        public static IGoalBuffer GoalBuffer(this IFactory factory, string name)
+        {
+            return new GoalBuffer(name);
+        }
+
+        /// <summary>
+        /// 建立暫時停車區物件
+        /// </summary>
+        public static IGoalBuffer GoalBuffer(this IFactory factory, int x, int y, double toward, string name)
+        {
+            return new GoalBuffer(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立暫時停車區物件
+        /// </summary>
+        public static IGoalBuffer GoalBuffer(this IFactory factory, int x, int y, IAngle toward, string name)
+        {
+            return new GoalBuffer(x, y, toward, name);
+        }
+
+        /// <summary>
+        /// 建立暫時停車區物件
+        /// </summary>
+        public static IGoalBuffer GoalBuffer(this IFactory factory, ITowardPair towardPair, string name)
+        {
+            return new GoalBuffer(towardPair, name);
+        }
+        #endregion GoalBuffer
+
+        #region Parking
         /// <summary>
         /// 建立暫時停車區物件
         /// </summary>
@@ -706,7 +1209,6 @@ namespace GLCore
         {
             return new Parking(towardPair, name);
         }
-
         #endregion Parking
     }
 }

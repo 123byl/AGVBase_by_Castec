@@ -46,8 +46,48 @@ namespace GLCore
                     SubColor = new Color(System.Drawing.Color.Purple, 200);
                     return;
 
+                case EType.General:
+                    BmpName = "General";
+                    return;
+
                 case EType.Goal:
                     BmpName = "Goal";
+                    return;
+
+                case EType.GoalGeneral:
+                    BmpName = "GoalGeneral";
+                    return;
+
+                case EType.GoalStandBy:
+                    BmpName = "GoalStandBy";
+                    return;
+
+                case EType.GoalDoor:
+                    BmpName = "GoalDoor";
+                    return;
+
+                case EType.GoalRiseUp:
+                    BmpName = "GoalRiseUp";
+                    return;
+
+                case EType.GoalRiseDown:
+                    BmpName = "GoalRiseDown";
+                    return;
+
+                case EType.GoalNormal:
+                    BmpName = "GoalNormal";
+                    return;
+
+                case EType.GoalMagneticTracking:
+                    BmpName = "GoalMagneticTracking";
+                    return;
+
+                case EType.MagneticTrackingFront:
+                    BmpName = "MagneticTrackingFront";
+                    return;
+
+                case EType.MagneticTrackingRear:
+                    BmpName = "MagneticTrackingRear";
                     return;
 
                 case EType.ForbiddenLine:
@@ -95,13 +135,39 @@ namespace GLCore
                     LineStyle = ELineStyle._1111111011111110;
                     return;
 
+                case EType.NarrowPassageWay:
+                    BmpName = "NarrowPassageWay";
+                    MainColor = new Color(System.Drawing.Color.Red, 150);
+                    LineStyle = ELineStyle._1111111011111110;
+                    return;
+
+                case EType.MagneticTracking:
+                    BmpName = "MagneticTracking";
+                    MainColor = new Color(System.Drawing.Color.Red, 150);
+                    LineStyle = ELineStyle._1111111011111110;
+                    return;
+
                 case EType.Power:
                     BmpName = "Power";
                     TowardLength = 1200;
                     return;
 
+                case EType.ChargingDocking:
+                    BmpName = "ChargingDocking";
+                    TowardLength = 1200;
+                    return;
+
+                case EType.ConveyorDocking:
+                    BmpName = "ConveyorDocking";
+                    TowardLength = 1200;
+                    return;
+
                 case EType.Parking:
                     BmpName = "Parking";
+                    return;
+
+                case EType.GoalBuffer:
+                    BmpName = "GoalBuffer";
                     return;
 
                 case EType.Path:

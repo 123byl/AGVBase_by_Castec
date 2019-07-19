@@ -68,9 +68,69 @@ namespace GLCore
         public static ISafetyDictionary<IGoal> GoalGM { get; } = new SafetyDictionary<IGoal>();
 
         /// <summary>
-        /// 窄道集合
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGeneral> GeneralGM { get; } = new SafetyDictionary<IGeneral>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalGeneral> GoalGeneralGM { get; } = new SafetyDictionary<IGoalGeneral>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalStandBy> GoalStandByGM { get; } = new SafetyDictionary<IGoalStandBy>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalDoor> GoalDoorGM { get; } = new SafetyDictionary<IGoalDoor>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalRiseUp> GoalRiseUpGM { get; } = new SafetyDictionary<IGoalRiseUp>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalRiseDown> GoalRiseDownGM { get; } = new SafetyDictionary<IGoalRiseDown>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalNormal> GoalNormalGM { get; } = new SafetyDictionary<IGoalNormal>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalMagneticTracking> GoalMagneticTrackingGM { get; } = new SafetyDictionary<IGoalMagneticTracking>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IMagneticTrackingFront> MagneticTrackingFrontGM { get; } = new SafetyDictionary<IMagneticTrackingFront>();
+
+        /// <summary>
+        /// 目標點集合
+        /// </summary>
+        public static ISafetyDictionary<IMagneticTrackingRear> MagneticTrackingRearGM { get; } = new SafetyDictionary<IMagneticTrackingRear>();
+
+        /// <summary>
+        /// 窄道軌跡線集合
         /// </summary>
         public static ISafetyDictionary<INarrowLine> NarrowLineGM { get; } = new SafetyDictionary<INarrowLine>();
+
+        /// <summary>
+        /// 窄道通道集合
+        /// </summary>
+        public static ISafetyDictionary<INarrowPassageWay> NarrowPassageWayGM { get; } = new SafetyDictionary<INarrowPassageWay>();
+
+        /// <summary>
+        /// 磁帶條集合
+        /// </summary>
+        public static ISafetyDictionary<IMagneticTracking> MagneticTrackingGM { get; } = new SafetyDictionary<IMagneticTracking>();
 
         /// <summary>
         /// 障礙線集合
@@ -88,13 +148,30 @@ namespace GLCore
         public static ISafetyDictionary<IParking> ParkingGM { get; } = new SafetyDictionary<IParking>();
 
         /// <summary>
+        /// 窄道暫時停車區集合
+        /// </summary>
+        public static ISafetyDictionary<IGoalBuffer> GoalBufferGM { get; } = new SafetyDictionary<IGoalBuffer>();
+
+        /// <summary>
         /// 充電站集合
         /// </summary>
         public static ISafetyDictionary<IPower> PowerGM { get; } = new SafetyDictionary<IPower>();
+
+        /// <summary>
+        /// 充電站前的定位點集合
+        /// </summary>
+        public static ISafetyDictionary<IChargingDocking> ChargingDockingGM { get; } = new SafetyDictionary<IChargingDocking>();
+
+        /// <summary>
+        /// 充電站前的定位點集合
+        /// </summary>
+        public static ISafetyDictionary<IConveyorDocking> ConveyorDockingGM { get; } = new SafetyDictionary<IConveyorDocking>();
+
         /// <summary>
         /// ID 管理器
         /// </summary>
-        public static class ID {
+        public static class ID
+        {
             /// <summary>
             /// ID 累加紀錄
             /// </summary>
@@ -103,8 +180,10 @@ namespace GLCore
             /// <summary>
             /// 產生唯一不重複的 ID
             /// </summary>
-            public static uint GenerateID() {
-                lock (mKey) {
+            public static uint GenerateID()
+            {
+                lock (mKey)
+                {
                     mID++;
                     return mID;
                 }
@@ -114,15 +193,19 @@ namespace GLCore
         /// <summary>
         /// 遠端 AGV 管理器
         /// </summary>
-        public static class RemoteAGV {
+        public static class RemoteAGV
+        {
             private static Dictionary<string, uint> mData = new Dictionary<string, uint>();
 
             /// <summary>
             /// AGV 連線至 EM 時呼叫，此函式負責將 AGV 加入資料庫中
             /// </summary>
-            public static void AGVConnected(string IP) {
-                lock (mKey) {
-                    if (IsExist(IP)) {
+            public static void AGVConnected(string IP)
+            {
+                lock (mKey)
+                {
+                    if (IsExist(IP))
+                    {
                         return;
                     }
                     uint agvID = Database.ID.GenerateID();
@@ -136,9 +219,12 @@ namespace GLCore
             /// <summary>
             /// 將 AGV 從資料庫中移除
             /// </summary>
-            public static void AGVDisconnected(string IP) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void AGVDisconnected(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
                     Database.AGVGM.Remove(agvID);
                 }
@@ -147,11 +233,15 @@ namespace GLCore
             /// <summary>
             /// 清除雷射 A
             /// </summary>
-            public static void ClearLaserA(string IP) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void ClearLaserA(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserAPoints.DataList.Clear();
                     });
                 }
@@ -160,11 +250,15 @@ namespace GLCore
             /// <summary>
             /// 清除雷射 A、B
             /// </summary>
-            public static void ClearLaserAB(string IP) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void ClearLaserAB(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserAPoints.DataList.Clear();
                         item.LaserBPoints.DataList.Clear();
                     });
@@ -174,11 +268,15 @@ namespace GLCore
             /// <summary>
             /// 清除雷射 B
             /// </summary>
-            public static void ClearLaserB(string IP) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void ClearLaserB(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserBPoints.DataList.Clear();
                     });
                 }
@@ -187,11 +285,14 @@ namespace GLCore
             /// <summary>
             /// 清除路徑
             /// </summary>
-            public static void ClearPath(string IP) {
-                lock (mKey) {
+            public static void ClearPath(string IP)
+            {
+                lock (mKey)
+                {
                     if (!IsExist(IP)) return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.Path.DataList.Clear();
                     });
                 }
@@ -200,9 +301,12 @@ namespace GLCore
             /// <summary>
             /// 獲得 AGV 狀態
             /// </summary>
-            public static IStatus GetAGVStatus(string IP) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return null;
+            public static IStatus GetAGVStatus(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return null;
                     uint agvID = mData[IP];
                     return Database.AGVGM[agvID].Status;
                 }
@@ -211,10 +315,13 @@ namespace GLCore
             /// <summary>
             /// 獲得連線中的所有 IP
             /// </summary>
-            public static List<string> GetAllIPs() {
-                lock (mKey) {
+            public static List<string> GetAllIPs()
+            {
+                lock (mKey)
+                {
                     List<string> res = new List<string>();
-                    foreach (var item in mData) {
+                    foreach (var item in mData)
+                    {
                         res.Add(item.Key);
                     }
                     return res;
@@ -224,11 +331,15 @@ namespace GLCore
             /// <summary>
             /// 更新雷射
             /// </summary>
-            public static void UpdateLaserA(string IP, IPair shift, IEnumerable<IPair> laser) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void UpdateLaserA(string IP, IPair shift, IEnumerable<IPair> laser)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserAPoints.ShowCenter = true;
                         item.LaserAPoints.DataList.Replace(laser);
                         item.LaserAPoints.Center.X = shift.X;
@@ -240,11 +351,15 @@ namespace GLCore
             /// <summary>
             /// 更新雷射
             /// </summary>
-            public static void UpdateLaserA(string IP, IEnumerable<IPair> laser) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void UpdateLaserA(string IP, IEnumerable<IPair> laser)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserAPoints.ShowCenter = false;
                         item.LaserAPoints.DataList.Replace(laser);
                     });
@@ -254,11 +369,15 @@ namespace GLCore
             /// <summary>
             /// 更新雷射
             /// </summary>
-            public static void UpdateLaserB(string IP, IPair shift, IEnumerable<IPair> laser) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void UpdateLaserB(string IP, IPair shift, IEnumerable<IPair> laser)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserBPoints.ShowCenter = true;
                         item.LaserBPoints.DataList.Replace(laser);
                         item.LaserBPoints.Center.X = shift.X;
@@ -270,11 +389,14 @@ namespace GLCore
             /// <summary>
             /// 更新雷射
             /// </summary>
-            public static void UpdateLaserB(string IP, IEnumerable<IPair> laser) {
-                lock (mKey) {
+            public static void UpdateLaserB(string IP, IEnumerable<IPair> laser)
+            {
+                lock (mKey)
+                {
                     if (!IsExist(IP)) return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserBPoints.ShowCenter = false;
                         item.LaserBPoints.DataList.Replace(laser);
                     });
@@ -284,11 +406,14 @@ namespace GLCore
             /// <summary>
             /// 更新雷射強度
             /// </summary>
-            public static void UpdateLaserStrength(string IP, IEnumerable<IPair> strength) {
-                lock (mKey) {
+            public static void UpdateLaserStrength(string IP, IEnumerable<IPair> strength)
+            {
+                lock (mKey)
+                {
                     if (!IsExist(IP)) return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.LaserStrength.DataList.Replace(strength);
                     });
                 }
@@ -297,11 +422,15 @@ namespace GLCore
             /// <summary>
             /// 更新路徑
             /// </summary>
-            public static void UpdatePath(string IP, IEnumerable<IPair> path) {
-                lock (mKey) {
-                    if (!IsExist(IP)) return;
+            public static void UpdatePath(string IP, IEnumerable<IPair> path)
+            {
+                lock (mKey)
+                {
+                    if (!IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.Path.DataList.Replace(path);
                     });
                 }
@@ -310,10 +439,13 @@ namespace GLCore
             /// <summary>
             /// 更新 AGV 座標
             /// </summary>
-            public static void UpdatePosition(string IP, double x, double y, double toward) {
-                lock (mKey) {
+            public static void UpdatePosition(string IP, double x, double y, double toward)
+            {
+                lock (mKey)
+                {
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.Status.Data.Position = FactoryMode.Factory.Pair(x, y);
                         item.Status.Data.Toward.Theta = toward;
                     });
@@ -325,18 +457,23 @@ namespace GLCore
             /// </summary>
             /// <param name="IP"></param>
             /// <param name="position"></param>
-            public static void UpdatePosition(string IP,ITowardPair position) {
-                UpdatePosition(IP, position.Position.X,position.Position.Y, position.Toward.Theta);
+            public static void UpdatePosition(string IP, ITowardPair position)
+            {
+                UpdatePosition(IP, position.Position.X, position.Position.Y, position.Toward.Theta);
             }
 
             /// <summary>
             /// 更新 AGV 狀態
             /// </summary>
-            public static void UpdateStatus(string IP, IStatus status) {
-                lock (mKey) {
-                    if (status == null || !IsExist(IP)) return;
+            public static void UpdateStatus(string IP, IStatus status)
+            {
+                lock (mKey)
+                {
+                    if (status == null || !IsExist(IP))
+                        return;
                     uint agvID = mData[IP];
-                    Database.AGVGM.SafetyEdit(agvID, (item) => {
+                    Database.AGVGM.SafetyEdit(agvID, (item) =>
+                    {
                         item.Status = status;
                     });
                 }
@@ -345,10 +482,14 @@ namespace GLCore
             /// <summary>
             /// 此 IP 是否在 Database 中有對應的資料
             /// </summary>
-            private static bool IsExist(string IP) {
-                lock (mKey) {
-                    if (!mData.ContainsKey(IP)) return false;
-                    if (!Database.AGVGM.ContainsID(mData[IP])) {
+            private static bool IsExist(string IP)
+            {
+                lock (mKey)
+                {
+                    if (!mData.ContainsKey(IP))
+                        return false;
+                    if (!Database.AGVGM.ContainsID(mData[IP]))
+                    {
                         mData.Remove(IP);
                         return false;
                     }
@@ -366,11 +507,29 @@ namespace GLCore
         /// </summary>
         public static void AddMarksToImg(Bitmap map, IArea bound)
         {
-            if (map.Width == 0 || map.Height == 0 || bound.Width() == 0 || bound.Height() == 0) return;
+            if (map.Width == 0 || map.Height == 0 || bound.Width() == 0 || bound.Height() == 0)
+                return;
             using (Graphics g = Graphics.FromImage(map))
             {
+                GoalMagneticTrackingGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                MagneticTrackingFrontGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                MagneticTrackingRearGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+
                 GoalGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GeneralGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalGeneralGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalStandByGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalDoorGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalRiseUpGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalRiseDownGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                GoalNormalGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+
+                GoalBufferGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                ParkingGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+
                 PowerGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                ChargingDockingGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
+                ConveyorDockingGM.SafetyForLoop((id, item) => AddTowardPairToImg(g, item, map, bound));
             }
         }
 
@@ -392,13 +551,34 @@ namespace GLCore
             AdvancedLineGM.Clear();
             ForbiddenAreaGM.Clear();
             ForbiddenLineGM.Clear();
+
             GoalGM.Clear();
+            GeneralGM.Clear();
+            GoalGeneralGM.Clear();
+            GoalStandByGM.Clear();
+            GoalDoorGM.Clear();
+            GoalRiseUpGM.Clear();
+            GoalRiseDownGM.Clear();
+            GoalNormalGM.Clear();
+
             NarrowLineGM.Clear();
+            NarrowPassageWayGM.Clear();
+
+            MagneticTrackingGM.Clear();
+            GoalMagneticTrackingGM.Clear();
+            MagneticTrackingFrontGM.Clear();
+            MagneticTrackingRearGM.Clear();
+
             ObstacleLinesGM.DataList.Clear();
             ObstaclePointsGM.DataList.Clear();
             DynamicObstaclePointsGM.DataList.Clear();
+
             ParkingGM.Clear();
+            GoalBufferGM.Clear();
+
             PowerGM.Clear();
+            ChargingDockingGM.Clear();
+            ConveyorDockingGM.Clear();
         }
 
         /// <summary>
@@ -474,14 +654,21 @@ namespace GLCore
         /// <param name="filePath"></param>
         /// <param name="agvID"></param>
         /// <returns></returns>
-        public static IArea LoadOriToDatabase(string filePath,uint agvID) {
+        public static IArea LoadOriToDatabase(string filePath,uint agvID)
+        {
             IArea area = null;
-            try {
-                if (File.Exists(filePath) && Database.AGVGM.ContainsID(agvID)) {
+            try
+            {
+                if (File.Exists(filePath) && Database.AGVGM.ContainsID(agvID))
+                {
                     var data = File.ReadAllLines(filePath);
                     List<IPair> path = new List<IPair>();
-                    double min_x = double.MaxValue, min_y = double.MaxValue, max_x = 0, max_y = 0;
-                    foreach (string s in data) {
+                    double min_x = double.MaxValue, 
+                               min_y = double.MaxValue, 
+                               max_x = 0,
+                               max_y = 0;
+                    foreach (string s in data)
+                    {
                         ITowardPair carPos = null;
                         List<IPair> laserData =null;
                         ReadScanningInfo(s, out carPos, out laserData);
@@ -491,7 +678,8 @@ namespace GLCore
                         Database.AGVGM[agvID].Data.Toward = carPos.Toward;
                         Database.AGVGM[agvID].Path.DataList.Add(carPos.Position);
                         Database.AGVGM[agvID].LaserAPoints.DataList.Replace(laserData);
-                        foreach(var point in laserData) {
+                        foreach(var point in laserData)
+                        {
                             if (point.X > max_x)
                                 max_x = point.X;
                             if (point.X < min_x)
@@ -506,9 +694,10 @@ namespace GLCore
                     }
                     return FactoryMode.Factory.Area(min_x, min_y, max_x, max_y);
                 }
-            }catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
-
             }
             return area;
         }
@@ -535,8 +724,64 @@ namespace GLCore
                             decode = DecodeGoalList;
                             break;
 
+                        case AGVDefine.MapFile.Head.GoalMagneticTrackingList:
+                            decode = DecodeGoalMagneticTrackingList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.MagneticTrackingFrontList:
+                            decode = DecodeMagneticTrackingFrontList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.MagneticTrackingRearList:
+                            decode = DecodeMagneticTrackingRearList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GeneralList:
+                            decode = DecodeGeneralList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalGeneralList:
+                            decode = DecodeGoalGeneralList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalStandByList:
+                            decode = DecodeGoalStandByList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalDoorList:
+                            decode = DecodeGoalDoorList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalRiseUpList:
+                            decode = DecodeGoalRiseUpList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalRiseDownList:
+                            decode = DecodeGoalRiseDownList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalNormalList:
+                            decode = DecodeGoalNormalList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.GoalBufferList:
+                            decode = DecodeGoalBufferList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.ParkingList:
+                            decode = DecodeParkingList;
+                            break;
+
                         case AGVDefine.MapFile.Head.PowerList:
                             decode = DecodePowerList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.ChargingDockingList:
+                            decode = DecodeChargingDockingList;
+                            break;
+
+                        case AGVDefine.MapFile.Head.ConveyorDockingList:
+                            decode = DecodeConveyorDockingList;
                             break;
 
                         case AGVDefine.MapFile.Head.ObstaclePoints:
@@ -580,15 +825,18 @@ namespace GLCore
                                 }
                                 catch (Exception)
                                 {
+
                                 }
                             }
                             break;
                     }
                 }
-                if (min != null && max != null) return FactoryMode.Factory.Area(min, max);
+                if (min != null && max != null)
+                    return FactoryMode.Factory.Area(min, max);
             }
             catch (System.Exception)
             {
+
             }
             return null;
         }
@@ -602,10 +850,41 @@ namespace GLCore
             IPair min = null;
             IPair max = null;
 
+            lines.Add(AGVDefine.MapFile.Head.GeneralList);
+            lines.AddRange(GeneralGM.ToStringList());
             lines.Add(AGVDefine.MapFile.Head.GoalList);
             lines.AddRange(GoalGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalGeneralList);
+            lines.AddRange(GoalGeneralGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalStandByList);
+            lines.AddRange(GoalStandByGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalDoorList);
+            lines.AddRange(GoalDoorGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalRiseUpList);
+            lines.AddRange(GoalRiseUpGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalRiseDownList);
+            lines.AddRange(GoalRiseDownGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalNormalList);
+            lines.AddRange(GoalNormalGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.GoalBufferList);
+            lines.AddRange(GoalBufferGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.ParkingList);
+            lines.AddRange(ParkingGM.ToStringList());
+
+            lines.Add(AGVDefine.MapFile.Head.GoalMagneticTrackingList);
+            lines.AddRange(GoalMagneticTrackingGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.MagneticTrackingFrontList);
+            lines.AddRange(MagneticTrackingFrontGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.MagneticTrackingRearList);
+            lines.AddRange(MagneticTrackingRearGM.ToStringList());
+
             lines.Add(AGVDefine.MapFile.Head.PowerList);
             lines.AddRange(PowerGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.ChargingDockingList);
+            lines.AddRange(ChargingDockingGM.ToStringList());
+            lines.Add(AGVDefine.MapFile.Head.ConveyorDockingList);
+            lines.AddRange(ConveyorDockingGM.ToStringList());
+
             lines.Add(AGVDefine.MapFile.Head.ForbiddenLine);
             lines.AddRange(ForbiddenLineGM.ToStringList());
             lines.Add(AGVDefine.MapFile.Head.ForbiddenArea);
@@ -628,27 +907,30 @@ namespace GLCore
         /// <param name="pack"></param>
         /// <param name="carPos"></param>
         /// <param name="laserData"></param>
-        public static void ReadScanningInfo(string pack, out ITowardPair carPos, out List<IPair> laserData) {
-            try {
+        public static void ReadScanningInfo(string pack, out ITowardPair carPos, out List<IPair> laserData)
+        {
+            try
+            {
                 string[] info = pack.Split(new char[] { ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
                 carPos = FactoryMode.Factory.TowardPair(double.Parse(info[0]), double.Parse(info[1]), double.Parse(info[2]));
                 laserData = new List<IPair>();
-                for (int m = 3; m < info.Length - 1; m += 2) {
+                for (int m = 3; m < info.Length - 1; m += 2)
+                {
                     laserData.Add(FactoryMode.Factory.Pair(double.Parse(info[m]), double.Parse(info[m + 1])));
                 }
                 //return true;
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 carPos = null;
                 laserData = null;
                 Console.WriteLine(error);
                 //return false;
             }
         }
-        
         #endregion Funciton - Public Methods
 
         #region Function - Private Methdos
-        
         /// <summary>
         /// 加入標示物
         /// </summary>
@@ -716,11 +998,95 @@ namespace GLCore
             AdvancedLineGM.Add(ID.GenerateID(), aline);
         }
 
+        private static void DecodeGeneralList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            General general = new General((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GeneralGM.Add(ID.GenerateID(), general);
+        }
+
         private static void DecodeGoalList(string data)
         {
             string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
             Goal goal = new Goal((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
             GoalGM.Add(ID.GenerateID(), goal);
+        }
+
+        private static void DecodeGoalGeneralList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalGeneral goalgeneral = new GoalGeneral((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalGeneralGM.Add(ID.GenerateID(), goalgeneral);
+        }
+
+        private static void DecodeGoalStandByList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalStandBy goalstandby = new GoalStandBy((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalStandByGM.Add(ID.GenerateID(), goalstandby);
+        }
+
+        private static void DecodeGoalDoorList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalDoor goaldoor = new GoalDoor((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalDoorGM.Add(ID.GenerateID(), goaldoor);
+        }
+
+        private static void DecodeGoalRiseUpList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalRiseUp goalriseup = new GoalRiseUp((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalRiseUpGM.Add(ID.GenerateID(), goalriseup);
+        }
+
+        private static void DecodeGoalRiseDownList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalRiseDown goalrisedown = new GoalRiseDown((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalRiseDownGM.Add(ID.GenerateID(), goalrisedown);
+        }
+
+        private static void DecodeGoalNormalList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalNormal goalnormal = new GoalNormal((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalNormalGM.Add(ID.GenerateID(), goalnormal);
+        }
+
+        private static void DecodeGoalMagneticTrackingList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalMagneticTracking goalmagnetictracking = new GoalMagneticTracking((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalMagneticTrackingGM.Add(ID.GenerateID(), goalmagnetictracking);
+        }
+
+        private static void DecodeMagneticTrackingFrontList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            MagneticTrackingFront magnetictrackingfront = new MagneticTrackingFront((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            MagneticTrackingFrontGM.Add(ID.GenerateID(), magnetictrackingfront);
+        }
+
+        private static void DecodeMagneticTrackingRearList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            MagneticTrackingRear magnetictrackingrear = new MagneticTrackingRear((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            MagneticTrackingRearGM.Add(ID.GenerateID(), magnetictrackingrear);
+        }
+
+        private static void DecodeGoalBufferList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            GoalBuffer goalbuffer = new GoalBuffer((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            GoalBufferGM.Add(ID.GenerateID(), goalbuffer);
+        }
+
+        private static void DecodeParkingList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            Parking parking = new Parking((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            ParkingGM.Add(ID.GenerateID(), parking);
         }
 
         private static IPair DecodeMaxPosition(string line)
@@ -767,6 +1133,20 @@ namespace GLCore
             string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
             Power power = new Power((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
             PowerGM.Add(ID.GenerateID(), power);
+        }
+
+        private static void DecodeChargingDockingList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            ChargingDocking chargingdocking = new ChargingDocking((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            ChargingDockingGM.Add(ID.GenerateID(), chargingdocking);
+        }
+
+        private static void DecodeConveyorDockingList(string data)
+        {
+            string[] elm = data.Split(AGVDefine.MapFile.SplitChar);
+            ConveyorDocking conveyordocking = new ConveyorDocking((int)double.Parse(elm[1]), (int)double.Parse(elm[2]), double.Parse(elm[3]), elm[0]);
+            ConveyorDockingGM.Add(ID.GenerateID(), conveyordocking);
         }
 
         private static IEnumerable<string> EncodeBound(IPair min, IPair max)

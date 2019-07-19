@@ -3,9 +3,9 @@
 namespace GLCore
 {
     /// <summary>
-    /// 禁止面
+    /// 目標點
     /// </summary>
-    public interface IForbiddenArea : ISingle<IArea>
+    public interface IGoalGeneral : ISingle<ITowardPair>
     {
 
     }

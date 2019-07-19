@@ -3,10 +3,9 @@
 namespace GLCore
 {
     /// <summary>
-    /// 禁止面
+    /// 充電站
     /// </summary>
-    public interface IForbiddenArea : ISingle<IArea>
+    public interface IChargingDocking : ISingle<ITowardPair>
     {
-
     }
 }

@@ -69,9 +69,14 @@ namespace GLUI
         /// <summary>
         /// 滑鼠動作
         /// </summary>
-        private IMouse Mouse {
-            get { return mMouse; }
-            set {
+        private IMouse Mouse
+        {
+            get
+            {
+                return mMouse;
+            }
+            set
+            {
                 mMouse?.Release();
                 mMouse = value; mMouse.UITranslateEvent += MMouse_UITranslateEvent;
             }
@@ -91,9 +96,12 @@ namespace GLUI
         /// </summary>
         public void SetAddMode(object obj)
         {
-            if (obj is ISingle<ITowardPair>) SetAddMode((ISingle<ITowardPair>)obj);
-            else if (obj is ISingle<ILine>) SetAddMode((ISingle<ILine>)obj);
-            else if (obj is ISingle<IArea>) SetAddMode((ISingle<IArea>)obj);
+            if (obj is ISingle<ITowardPair>)
+                SetAddMode((ISingle<ITowardPair>)obj);
+            else if (obj is ISingle<ILine>)
+                SetAddMode((ISingle<ILine>)obj);
+            else if (obj is ISingle<IArea>)
+                SetAddMode((ISingle<IArea>)obj);
         }
 
         /// <summary>
@@ -174,10 +182,30 @@ namespace GLUI
             Database.AdvancedLineGM.Draw(mGL);
             Database.ForbiddenAreaGM.Draw(mGL);
             Database.ForbiddenLineGM.Draw(mGL);
+
             Database.NarrowLineGM.Draw(mGL);
+            Database.NarrowPassageWayGM.Draw(mGL);
+            Database.MagneticTrackingGM.Draw(mGL);
+
             Database.ParkingGM.Draw(mGL);
+            Database.GoalBufferGM.Draw(mGL);
+
             Database.PowerGM.Draw(mGL);
+            Database.ChargingDockingGM.Draw(mGL);
+            Database.ConveyorDockingGM.Draw(mGL);
+
+            Database.GeneralGM.Draw(mGL);
             Database.GoalGM.Draw(mGL);
+            Database.GoalGeneralGM.Draw(mGL);
+            Database.GoalStandByGM.Draw(mGL);
+            Database.GoalDoorGM.Draw(mGL);
+            Database.GoalRiseUpGM.Draw(mGL);
+            Database.GoalRiseDownGM.Draw(mGL);
+            Database.GoalNormalGM.Draw(mGL);
+            Database.GoalMagneticTrackingGM.Draw(mGL);
+            Database.MagneticTrackingFrontGM.Draw(mGL);
+            Database.MagneticTrackingRearGM.Draw(mGL);
+
             Database.AGVGM.Draw(mGL);
         }
 
@@ -196,11 +224,14 @@ namespace GLUI
         private void GDIDraw()
         {
             InitialDraw();
-            if (ShowGrid) DrawGrid();
-            if (ShowAxis) DrawAxis();
+            if (ShowGrid)
+                DrawGrid();
+            if (ShowAxis)
+                DrawAxis();
             DrawDataBase();
             DrawDragManager();
-            if (ShowNames) DrawNames();
+            if (ShowNames)
+                DrawNames();
         }
 
         /// <summary>
@@ -208,16 +239,23 @@ namespace GLUI
         /// </summary>
         private void InitialDraw()
         {
-            mGL.ClearColor(BackgroundColor.R / 255.0f, BackgroundColor.G / 255.0f, BackgroundColor.B / 255.0f, BackgroundColor.A / 255.0f);
+            mGL.ClearColor(BackgroundColor.R / 255.0f,
+                                     BackgroundColor.G / 255.0f,
+                                     BackgroundColor.B / 255.0f,
+                                     BackgroundColor.A / 255.0f);
             mGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            if (ShowNames) mGL.ClearText();
+            if (ShowNames)
+                mGL.ClearText();
             // 投影矩陣
             mGL.MatrixMode(OpenGL.GL_PROJECTION);
             // MatrixMode 後要執行 LoadIdentity
             mGL.LoadIdentity();
             // 畫布的大小（正交）
 
-            mGL.Ortho(-Zoom * mOpenGLControl.Width / 2, Zoom * mOpenGLControl.Width / 2, -Zoom * mOpenGLControl.Height / 2, Zoom * mOpenGLControl.Height / 2, -10, 100);
+            mGL.Ortho(-Zoom * mOpenGLControl.Width / 2,
+                               Zoom * mOpenGLControl.Width / 2,
+                              -Zoom * mOpenGLControl.Height / 2,
+                               Zoom * mOpenGLControl.Height / 2, -10, 100);
             // 繪圖矩陣
             mGL.MatrixMode(OpenGL.GL_MODELVIEW);
             // MatrixMode 後要執行 LoadIdentity
@@ -274,7 +312,6 @@ namespace GLUI
         }
 
         #region IDisposable Support
-
         private bool disposedValue = false; // 偵測多餘的呼叫
 
         // TODO: 僅當上方的 Dispose(bool disposing) 具有會釋放 Unmanaged 資源的程式碼時，才覆寫完成項。
@@ -309,7 +346,6 @@ namespace GLUI
                 disposedValue = true;
             }
         }
-
         #endregion IDisposable Support
     }
 }

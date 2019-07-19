@@ -51,9 +51,84 @@ namespace AGVDefine
             public const string AdvancedLine = "Advanced Line";
 
             /// <summary>
+            /// 優先線列表
+            /// </summary>
+            public const string NarrowLine = "Narrow Line";
+
+            /// <summary>
+            /// 優先線列表
+            /// </summary>
+            public const string NarrowPassageWay = "Narrow Passage Way";
+
+            /// <summary>
+            /// 優先線列表
+            /// </summary>
+            public const string MagneticTracking = "Magnetic Tracking Line";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalMagneticTrackingList = "Magnetic Tracking Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string MagneticTrackingFrontList = "Magnetic Tracking Front Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string MagneticTrackingRearList = "Magnetic Tracking Rear Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GeneralList = "General List";
+
+            /// <summary>
             /// 目標點列表
             /// </summary>
             public const string GoalList = "Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalGeneralList = "General Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalStandByList = "StandBy Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalDoorList = "Door Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalRiseUpList = "Jacking Mechanism Rise Up Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalRiseDownList = "Jacking Mechanism Rise Down Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalNormalList = "Normal Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string GoalBufferList = "Buffer Goal List";
+
+            /// <summary>
+            /// 目標點列表
+            /// </summary>
+            public const string ParkingList = "Parking List";
 
             /// <summary>
             /// 地圖最大值
@@ -74,6 +149,16 @@ namespace AGVDefine
             /// 充電站列表
             /// </summary>
             public const string PowerList = "Power List";
+
+            /// <summary>
+            /// 充電站列表
+            /// </summary>
+            public const string ChargingDockingList = "Charging Docking List";
+
+            /// <summary>
+            /// 充電站列表
+            /// </summary>
+            public const string ConveyorDockingList = "Conveyor Docking List";
         }
     }
 }

@@ -3,9 +3,9 @@
 namespace GLCore
 {
     /// <summary>
-    /// 禁止面
+    /// 窄道
     /// </summary>
-    public interface IForbiddenArea : ISingle<IArea>
+    public interface INarrowPassageWay : ISingle<ILine>
     {
 
     }

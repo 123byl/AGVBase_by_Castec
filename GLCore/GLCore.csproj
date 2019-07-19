@@ -83,13 +83,28 @@
     <Compile Include="Implementation\Single\AdvancedArea.cs" />
     <Compile Include="Implementation\Single\AdvancedLine.cs" />
     <Compile Include="Implementation\Single\AGV.cs" />
+    <Compile Include="Implementation\Single\ConveyorDocking.cs" />
     <Compile Include="Implementation\Single\Eraser.cs" />
     <Compile Include="Implementation\Single\ForbiddenArea.cs" />
     <Compile Include="Implementation\Single\ForbiddenLine.cs" />
+    <Compile Include="Implementation\Single\General.cs" />
+    <Compile Include="Implementation\Single\GoalNormal.cs" />
+    <Compile Include="Implementation\Single\GoalRiseDown.cs" />
+    <Compile Include="Implementation\Single\GoalRiseUp.cs" />
+    <Compile Include="Implementation\Single\GoalDoor.cs" />
+    <Compile Include="Implementation\Single\GoalStandBy.cs" />
+    <Compile Include="Implementation\Single\GoalGeneral.cs" />
+    <Compile Include="Implementation\Single\MagneticTrackingRear.cs" />
+    <Compile Include="Implementation\Single\MagneticTrackingFront.cs" />
+    <Compile Include="Implementation\Single\GoalMagneticTracking.cs" />
     <Compile Include="Implementation\Single\Goal.cs" />
+    <Compile Include="Implementation\Single\MagneticTracking.cs" />
+    <Compile Include="Implementation\Single\NarrowPassageWay.cs" />
     <Compile Include="Implementation\Single\NarrowLine.cs" />
+    <Compile Include="Implementation\Single\GoalBuffer.cs" />
     <Compile Include="Implementation\Single\Parking.cs" />
     <Compile Include="Implementation\Single\Pen.cs" />
+    <Compile Include="Implementation\Single\ChargingDocking.cs" />
     <Compile Include="Implementation\Single\Power.cs" />
     <Compile Include="Implementation\Single\Single.cs" />
     <Compile Include="Interface\Drag\IDragable.cs" />
@@ -123,13 +138,28 @@
     <Compile Include="Interface\Single\IAdvancedArea.cs" />
     <Compile Include="Interface\Single\IAdvancedLine.cs" />
     <Compile Include="Interface\Single\IAGV.cs" />
+    <Compile Include="Interface\Single\IConveyorDocking.cs" />
     <Compile Include="Interface\Single\IEraser.cs" />
     <Compile Include="Interface\Single\IForbiddenArea.cs" />
     <Compile Include="Interface\Single\IForbiddenLine.cs" />
+    <Compile Include="Interface\Single\IGeneral.cs" />
+    <Compile Include="Interface\Single\IGoalNormal.cs" />
+    <Compile Include="Interface\Single\IGoalRiseDown.cs" />
+    <Compile Include="Interface\Single\IGoalRiseUp.cs" />
+    <Compile Include="Interface\Single\IGoalDoor.cs" />
+    <Compile Include="Interface\Single\IGoalStandBy.cs" />
+    <Compile Include="Interface\Single\IGoalGeneral.cs" />
+    <Compile Include="Interface\Single\IMagneticTrackingRear.cs" />
+    <Compile Include="Interface\Single\IMagneticTrackingFront.cs" />
+    <Compile Include="Interface\Single\IGoalMagneticTracking.cs" />
     <Compile Include="Interface\Single\IGoal.cs" />
+    <Compile Include="Interface\Single\IMagneticTracking.cs" />
+    <Compile Include="Interface\Single\INarrowPassageWay.cs" />
     <Compile Include="Interface\Single\INarrowLine.cs" />
+    <Compile Include="Interface\Single\IGoalBuffer.cs" />
     <Compile Include="Interface\Single\IParking.cs" />
     <Compile Include="Interface\Single\IPen.cs" />
+    <Compile Include="Interface\Single\IChargingDocking.cs" />
     <Compile Include="Interface\Single\IPower.cs" />
     <Compile Include="Interface\Single\ISingle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,9 +215,11 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SingleTowardPairEditor.resx">
       <DependentUpon>SingleTowardPairEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

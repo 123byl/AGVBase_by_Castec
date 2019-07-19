@@ -3,9 +3,9 @@
 namespace GLCore
 {
     /// <summary>
-    /// 禁止面
+    /// 窄道暫時停車區
     /// </summary>
-    public interface IForbiddenArea : ISingle<IArea>
+    public interface IGoalBuffer : ISingle<ITowardPair>
     {
 
     }
